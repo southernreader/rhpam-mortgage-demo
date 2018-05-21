@@ -11,7 +11,7 @@ rule "Jumbo Mortgage"
 		System.out.println("Executed Rule: " + drools.getRule().getName() );
 		application.setApr( application.getApr() + 0.5 );
 end
-/*
+
 rule "Low Down Payment based on Appraisal"
 	dialect "mvel"
 	ruleflow-group "apr-calculation"
@@ -29,7 +29,7 @@ rule "Low Down Payment based on Appraisal"
 		application.setApr( application.getApr() + aprSurcharge );
 		System.out.println("Executed Rule: " + drools.getRule().getName() );
 end
-
+/*
 rule "Low Down Payment before Appraisal"
 	dialect "mvel"
 	ruleflow-group "apr-calculation"
