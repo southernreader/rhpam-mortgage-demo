@@ -1,2 +1,122 @@
 package com.redhat.bpms.examples.mortgage;
 
+rule "Jumbo Mortgage"
+	dialect "mvel"
+	ruleflow-group "apr-calculation"
+	salience -5
+	no-loop true
+	when
+		application : Application( mortgageAmount > 417000 )
+	then
+		System.out.println("Executed Rule: " + drools.getRule().getName() );
+		application.setApr( application.getApr() + 0.5 );
+end
+
+rule "Low Down Payment based on Appraisal"
+	dialect "mvel"
+	ruleflow-group "apr-calculation"
+	salience -3
+	no-loop true
+	when
+		appraised : Appraisal( )
+		application : Application( mortgageAmount > ( appraised.value * 8 / 10 ) )
+	then
+		double ratio = application.getMortgageAmount().doubleValue() / appraised.getValue().doubleValue();
+		int brackets = (int)((ratio - 0.8) / 0.05);
+		brackets++;
+		double aprSurcharge = 0.75 * brackets;
+		System.out.println( "aprSurcharge added is " + aprSurcharge );
+		application.setApr( application.getApr() + aprSurcharge );
+		System.out.println("Executed Rule: " + drools.getRule().getName() );
+end
+
+rule "Low Down Payment before Appraisal"
+	dialect "mvel"
+	ruleflow-group "apr-calculation"
+	salience -3
+	no-loop true
+	when
+		not (Appraisal( )) 
+		property : Property( )
+		application : Application( mortgageAmount > ( property.price * 8 / 10 ) )
+	then
+		double ratio = application.getMortgageAmount().doubleValue() / property.getPrice().doubleValue();
+		int brackets = (int)((ratio - 0.8) / 0.05);
+		brackets++;
+		double aprSurcharge = 0.75 * brackets;
+		System.out.println( "aprSurcharge added is " + aprSurcharge );
+		application.setApr( application.getApr() + aprSurcharge );
+		System.out.println("Executed Rule: " + drools.getRule().getName() );
+end
+
+rule "Reset Validation"
+	dialect "mvel"
+	ruleflow-group "resetValidation"
+	when
+		error : ValidationError( )
+	then
+		retract( error );
+		System.out.println("Executed Rule: " + drools.getRule().getName() );
+end
+
+rule "Validate Amortization"
+	dialect "mvel"
+	ruleflow-group "validation"
+	when
+		Application( amortization not in ( 10, 15, 30 ) )
+	then
+		ValidationError error = new ValidationError();
+		error.setCause( "Amortization can only be between 10 and 40 years" );
+		insert( error );
+		System.out.println("Executed Rule: " + drools.getRule().getName() );
+end
+
+rule "Validate Down Payment"
+	dialect "mvel"
+	ruleflow-group "validation"
+	when
+		property : Property( )
+		Application( downPayment < 0 || downPayment > property.price )
+	then
+		ValidationError fact0 = new ValidationError();
+		fact0.setCause( "Down payment can't be negative or larger than property value" );
+		insert( fact0 );
+		System.out.println("Executed Rule: " + drools.getRule().getName() );
+end
+
+rule "Validate Income"
+	dialect "mvel"
+	ruleflow-group "validation"
+	when
+		Applicant( income < 10000 )
+	then
+		ValidationError fact0 = new ValidationError();
+		fact0.setCause( "Income too low" );
+		insert( fact0 );
+		System.out.println("Executed Rule: " + drools.getRule().getName() );
+end
+
+rule "Validate Property Price"
+	dialect "mvel"
+	ruleflow-group "validation"
+	when
+		Property( price < 50000 )
+	then
+		ValidationError fact0 = new ValidationError();
+		fact0.setCause( "Property price too low" );
+		insert( fact0 );
+		System.out.println("Executed Rule: " + drools.getRule().getName() );
+end
+
+
+rule "Validate SSN"
+	dialect "mvel"
+	ruleflow-group "validation"
+	when
+		Applicant( ssn < 100000000 || ssn > 999999999 )
+	then
+		ValidationError fact0 = new ValidationError();
+		fact0.setCause( "Invalid Social Security Number" );
+		insert( fact0 );
+		System.out.println("Executed Rule: " + drools.getRule().getName() );
+end
