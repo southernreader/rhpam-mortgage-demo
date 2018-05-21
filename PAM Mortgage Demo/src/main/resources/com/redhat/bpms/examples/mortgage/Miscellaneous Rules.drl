@@ -1,5 +1,5 @@
 package com.redhat.bpms.examples.mortgage;
-
+/*
 rule "Jumbo Mortgage"
 	dialect "mvel"
 	ruleflow-group "apr-calculation"
@@ -36,7 +36,7 @@ rule "Low Down Payment before Appraisal"
 	salience -3
 	no-loop true
 	when
-		not (Appraisal( )) 
+		not (Appraisal( ))
 		property : Property( )
 		application : Application( mortgageAmount > ( property.price * 8 / 10 ) )
 	then
@@ -120,3 +120,4 @@ rule "Validate SSN"
 		insert( fact0 );
 		System.out.println("Executed Rule: " + drools.getRule().getName() );
 end
+*/
