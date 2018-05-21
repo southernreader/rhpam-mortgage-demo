@@ -6,12 +6,24 @@ package com.redhat.bpms.examples.mortgage;
 
 public class Applicant implements java.io.Serializable {
 
-    static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 
-    public Applicant() {
-    }
+	@org.kie.api.definition.type.Label(value = "Credit Score")
+	private java.lang.Integer creditScore;
 
+	public Applicant() {
+	}
 
+	public java.lang.Integer getCreditScore() {
+		return this.creditScore;
+	}
 
+	public void setCreditScore(java.lang.Integer creditScore) {
+		this.creditScore = creditScore;
+	}
+
+	public Applicant(java.lang.Integer creditScore) {
+		this.creditScore = creditScore;
+	}
 
 }
