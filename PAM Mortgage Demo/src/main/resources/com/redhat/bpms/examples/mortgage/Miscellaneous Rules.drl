@@ -29,7 +29,7 @@ rule "Low Down Payment based on Appraisal"
 		application.setApr( application.getApr() + aprSurcharge );
 		System.out.println("Executed Rule: " + drools.getRule().getName() );
 end
-/*
+
 rule "Low Down Payment before Appraisal"
 	dialect "mvel"
 	ruleflow-group "apr-calculation"
@@ -48,7 +48,7 @@ rule "Low Down Payment before Appraisal"
 		application.setApr( application.getApr() + aprSurcharge );
 		System.out.println("Executed Rule: " + drools.getRule().getName() );
 end
-*/
+
 rule "Reset Validation"
 	dialect "mvel"
 	ruleflow-group "resetValidation"
