@@ -1,5 +1,5 @@
 package com.redhat.bpms.examples.mortgage;
-/*
+
 rule "Jumbo Mortgage"
 	dialect "mvel"
 	ruleflow-group "apr-calculation"
@@ -11,7 +11,7 @@ rule "Jumbo Mortgage"
 		System.out.println("Executed Rule: " + drools.getRule().getName() );
 		application.setApr( application.getApr() + 0.5 );
 end
-
+/*
 rule "Low Down Payment based on Appraisal"
 	dialect "mvel"
 	ruleflow-group "apr-calculation"
