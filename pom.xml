@@ -5,7 +5,7 @@
   <groupId>com.redhat.bpms.examples</groupId>
   <artifactId>mortgage</artifactId>
   <version>1.0</version>
-  <name>PAM Mortgage Demo</name>
+  <name>PAM-Mortgage-Demo</name>
   <description>The classic mortgage demo, updated to run on PAM 7.0</description>
   <dependencies>
     <dependency>
@@ -45,6 +45,13 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  <repositories>
+    <repository>
+      <id>guvnor-m2-repo</id>
+      <name>Guvnor M2 Repo</name>
+      <url>http://localhost:8080/jbpm-console/maven2/</url>
+    </repository>
+  </repositories>
   <build>
     <plugins>
       <plugin>
@@ -55,11 +62,4 @@
       </plugin>
     </plugins>
   </build>
-  <repositories>
-    <repository>
-      <id>guvnor-m2-repo</id>
-      <name>Guvnor M2 Repo</name>
-      <url>http://localhost:8080/jbpm-console/maven2/</url>
-    </repository>
-  </repositories>
 </project>
