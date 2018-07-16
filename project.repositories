@@ -3,14 +3,6 @@
     <repository>
       <include>true</include>
       <metadata>
-        <id>snapshots-repo</id>
-        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        <source>SETTINGS</source>
-      </metadata>
-    </repository>
-    <repository>
-      <include>true</include>
-      <metadata>
         <id>redhat-ga-repo</id>
         <url>https://maven.repository.redhat.com/ga/</url>
         <source>SETTINGS</source>
@@ -46,6 +38,14 @@
         <id>local</id>
         <url>/Users/kspokas/.m2/repository</url>
         <source>LOCAL</source>
+      </metadata>
+    </repository>
+    <repository>
+      <include>true</include>
+      <metadata>
+        <id>snapshots-repo</id>
+        <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        <source>SETTINGS</source>
       </metadata>
     </repository>
   </repositories>
