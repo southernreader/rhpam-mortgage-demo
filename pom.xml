@@ -4,32 +4,32 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.redhat.bpms.examples</groupId>
   <artifactId>mortgage</artifactId>
-  <version>1.0</version>
-  <name>PAM-Mortgage-Demo</name>
-  <description>The classic mortgage demo, updated to run on PAM 7.0</description>
+  <version>1</version>
+  <name>Mortgage_Demo</name>
+  <description>Mortgage application to demo basic features of BPMS 6</description>
   <dependencies>
     <dependency>
       <groupId>org.kie</groupId>
       <artifactId>kie-api</artifactId>
-      <version>7.7.0.Final-redhat-8</version>
+      <version>7.7.0.Final-redhat-7</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.kie</groupId>
       <artifactId>kie-internal</artifactId>
-      <version>7.7.0.Final-redhat-8</version>
+      <version>7.7.0.Final-redhat-7</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.optaplanner</groupId>
       <artifactId>optaplanner-core</artifactId>
-      <version>7.7.0.Final-redhat-8</version>
+      <version>7.7.0.Final-redhat-7</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.optaplanner</groupId>
       <artifactId>optaplanner-persistence-jaxb</artifactId>
-      <version>7.7.0.Final-redhat-8</version>
+      <version>7.7.0.Final-redhat-7</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -45,19 +45,12 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <repositories>
-    <repository>
-      <id>guvnor-m2-repo</id>
-      <name>Guvnor M2 Repo</name>
-      <url>http://localhost:8080/jbpm-console/maven2/</url>
-    </repository>
-  </repositories>
   <build>
     <plugins>
       <plugin>
         <groupId>org.kie</groupId>
         <artifactId>kie-maven-plugin</artifactId>
-        <version>7.7.0.Final-redhat-8</version>
+        <version>7.7.0.Final-redhat-7</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>
